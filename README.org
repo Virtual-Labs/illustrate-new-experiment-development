@@ -1,0 +1,31 @@
+#+TITLE: README for Building an Experiment
+#+AUTHOR: VLEAD
+#+DATE: [2018-01-10 Wed]
+#+SETUPFILE: ./org-templates/level-0.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
+
+
+* Introduction
+  This document serves as guideline for creating a new
+  experiment from conception to deployment.
+
+* Process Flow
+  The following steps must be adhered to when taking up the
+  task of developing a new experiment in phase III of
+  Virtual Labs. 
+
+** Request for repository creation
+   Every experiment under phase III will be version
+   controlled and therefore a git repository is the starting
+   point.  To get a git repository, create an issue at
+   [[https://github.com/Virtual-Labs/engineers-forum/issues][engineers-forum]] requesting for creation of a repository.
+   Apply the label =create-repo-for-experiment=.  Please
+   refer to a sample [[https://github.com/Virtual-Labs/engineers-forum/issues/461][issue]].  The same issue requesting for
+   repository is updated after creation of the repository by
+   the central platform team.
+
+* Directory Structure
+  
+  

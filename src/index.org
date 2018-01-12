@@ -48,6 +48,4 @@
   #+END_EXAMPLE
 
 ** Answer the Pedagogy questionnaire
-   The file =q-and-a.md= contains list of questions and
-   answering them will help build the experiment with strong
-   pedagogy principles.  Refer to [[merge-sort]]'s [[answers]]. 
+   Follow the instructions listed [[http://community.virtual-labs.ac.in/docs/ph3-new-exp-dev/#org55bb179][here]].

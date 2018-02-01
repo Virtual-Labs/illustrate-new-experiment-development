@@ -31,3 +31,5 @@ elisp
 *.html
 *.tex
 config.org
+version.org
+tag-desc-.org

@@ -1,35 +1,31 @@
 SHELL := /bin/bash
-
+PWD=$(shell pwd)
+SRC_DIR=${PWD}/src
+VERSION_FILE_TEMPLATE=${PWD}/src/version.org.template
+VERSION_FILE=${PWD}/src/version.org
 CODE_DIR=build/code
 DOC_DIR=build/docs
-SRC_DIR=src/runtime
-PWD=$(shell pwd)
-LINT_FILE=${PWD}/${CODE_DIR}/lint_output
-EXIT_FILE=${PWD}/exit.txt
-STATUS=0
+tag=$(shell git tag -l | tail -1)
+export tag
 
-all:  build run-py-tests
+all:  build
 
 init: 
 	./init.sh
 
-build: init
-	make -f tangle-make -k all
+write-version:
+	rm -rf ${VERSION_FILE}
+	cp ${VERSION_FILE_TEMPLATE} ${VERSION_FILE}
+	echo ${tag} >> ${VERSION_FILE}
 
-install-pep:
-	sudo pip install pep8
 
-lint:  install-pep
-	pep8 --ignore=E302 ${PWD}/${CODE_DIR} > ${LINT_FILE};
-
-build-with-lint: build lint
-
-run-py-tests:
-	export PYTHONPATH=${PWD}/${CODE_DIR}; find ${PWD}/${CODE_DIR} -name '*test_*.py' -exec python '{}' \;
+build: init write-version
+	make -f tangle-make -k readtheorg=true all
 
 clean:	
 	make -f tangle-make clean
 
-move-to-var:
+host:
 	rm -rf /var/www/html/*
 	rsync -a ${PWD}/${CODE_DIR}/runtime/ /var/www/html/
+

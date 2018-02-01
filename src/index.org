@@ -1,11 +1,10 @@
-#+TITLE: README for Building an Experiment
+#+TITLE: A README for Experiment Building
 #+AUTHOR: VLEAD
 #+DATE: [2018-01-10 Wed]
 #+SETUPFILE: ./org-templates/level-0.org
 #+TAGS: boilerplate(b)
 #+EXCLUDE_TAGS: boilerplate
 #+OPTIONS: ^:nil
-
 
 * Introduction
   This document serves as a guideline for creating a new
@@ -14,38 +13,108 @@
 * Process Flow
   The following steps must be adhered to when taking up the
   task of developing a new experiment in phase III of
-  Virtual Labs. 
+  Virtual Labs.
 
-** Request for repository creation
-   Every experiment under phase III will be version
-   controlled and therefore a git repository is the starting
-   point.  To get a git repository, create an issue at
-   [[https://github.com/Virtual-Labs/engineers-forum/issues][engineers-forum]] requesting for creation of a repository.
-   Apply the label =create-repo-for-experiment=.  Please
-   refer to a sample [[https://github.com/Virtual-Labs/engineers-forum/issues/461][issue]].  The same issue requesting for
-   repository is updated after creation of the repository by
-   the central platform team.
+* Request for repository creation
+  Every experiment under phase III will be version
+  controlled and therefore a git repository is the starting
+  point.  To get a git repository:
 
-** Illustrate the steps in experiment development
-   Let us work with [[https://github.com/Virtual-Labs/merge-sort][merge-sort]] experiment to illustrate
-   different steps to develop a new experiment.
+  1. Create an account on [[https://github.com][github]].
+  2. Create an issue at [[https://github.com/virtual-labs/engineers-forum/issues][engineers-forum]] requesting for
+     creation of a repository.  Refer to a sample [[https://github.com/virtual-labs/engineers-forum/issues/461][issue]].
+  3. Apply the label =create-repo-for-experiment=.  Refer
+     to the sample [[https://github.com/virtual-labs/engineers-forum/issues/461][issue]].
+  4. The central platform team updates the same issue with
+     the details of the newly created repository.  Once
+     this is done, the requester receives an email to the
+     account registered with github in the first step.
 
-** Directory Structure
+* Demo experiment
+  Look at [[https://github.com/virtual-labs/merge-sort][merge-sort]] experiment to develop an insight into
+  the steps involved to build an experiment.  This is a
+  reference implementation.
 
-   When the repository is created, it will have the following
-   structure.  
+* Directory Structure
+  The repository created for a new experiment has the
+  following structure.
 
   #+BEGIN_EXAMPLE
-  merge-sort/
-    |--- README.org
-    |--- src
-         |--- pedagogy
-              |--- q-and-a.md
-         |--- 
-         |---
-    |--- .gitignore
-    |--- .git
+   ├── README.md
+   └── src
+       ├── exp-spec.json
+       ├── title
+       │   └── index.md
+       ├── objective
+       │   └── index.md
+       ├── pre-test
+       │   └── index.md
+       ├── theory
+       │   └── index.md
+       ├── procedure
+       │   └── index.md
+       ├── simulation
+       │   └── deploy-spec.json
+       ├── quiz
+       │   └── index.md
+       ├── feedback
+       │   └── index.md
+       ├── further-reading
+       │   └── index.md
+       ├── pedagogy
+       │   ├── mapping-checklist
+       │   └── questionnaire
+       ├── img
+
   #+END_EXAMPLE
 
-** Answer the Pedagogy questionnaire
-   Follow the instructions listed [[http://community.virtual-labs.ac.in/docs/ph3-new-exp-dev/#org55bb179][here]].
+* Answer the Pedagogy questionnaire
+  Follow the instructions listed [[http://community.virtual-labs.ac.in/docs/ph3-new-exp-dev/#org55bb179][here]].
+
+* Fill the details of experiment
+  Fill the details in the file =src/exp-spec.json=.  The
+  details filled here become part of meta data about an
+  experiment.  
+
+  This data is saved and a service exposes the saved data
+  through an API for other services to consume.  The vlabs
+  portal uses this data to categorize the experiment based
+  on keywords.
+
+  For example, VLABS portal catagorizes the mergesort under
+  data structures or algorithms because the experiment
+  specification of [[https://github.com/virtual-labs/merge-sort/blob/master/src/exp-spec.json][mergesort]] contains these same [[https://github.com/virtual-labs/merge-sort/blob/master/src/exp-spec.json][keywords]].
+
+* Build Content for the experiment
+  The first step in creating the content is to [[https://help.github.com/articles/cloning-a-repository/][clone]] the
+  repository.  To clone the repo, do the following:
+  1. Follow the hyperlink in the email received by you that
+     mentions the successful creation of the git
+     repository.
+  2. Follow the steps mentioned at [[https://help.github.com/articles/cloning-a-repository/][cloning a repository]].
+
+  Once the experiment repository is cloned, a directory with
+  the repository name is created in your current directory.
+  Open your favorite editor and add content to each section
+  in =[[https://guides.github.com/features/mastering-markdown/][markdown]]= language.  The skeleton contains one file --
+  =index.md= -- in each section, but if the user thinks more
+  files are required, please create them with the extension
+  =.md=.  Ensure the file names are in lower case and
+  contain only =hyphens= apart from alphabets.
+
+* Develop the simulation
+  Use the directory =simulation= to build the simulation.
+** Guidelines for simulation development  
+   1. Use only FOSS to build the simulation.
+   2. Provide a deployment specification that details the
+      steps required to deploy and run the experiment.
+      Please refer to the [[https://github.com/virtual-labs/merge-sort/blob/master/src/exp-spec.json][sample]] deployment specification of
+      merge sort. 
+   3. Build the simulation to run in a browser without
+      requirement of plugins.
+   4. Use javascript and client side routing if no heavy
+      duty computation is required at the backend. This
+      obviates the need for writing code on the server
+      side.
+* Version
+#+include: "./version.org"
